@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <p></p>
+    </div>
+    <div class="ds-lite">
+        <!-- Parte superior -->
+        <div class="top">
+            <div class="ds-brand">Nintendo DS Lite</div>
+            
+            <!-- Pantalla superior -->
+            <div class="display-wrap">
+                <div class="display">
+                    <div id="pokemonInfo" class="d-none">
+                        <div class="pokemon-header">
+                            <div class="pokemon-top">
+                                <div class="pokemon-image-container">
+                                    <img id="pokemonImage" class="pokemon-image" src="" alt="Imagen del Pokémon">
+                                </div>
+                                <div class="pokemon-info-container">
+                                    <h2 id="pokemonName">Nombre del Pokémon</h2>
+                                    <p id="pokemonNumber">N° 000</p>
+                                    <div id="pokemonTypes" class="d-flex justify-content-center"></div>
+                                </div>
+                            </div>
+                            <div class="pokemon-description">
+                                <p id="pokemonDesc" class="description-text"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Altavoces -->
+            <ul class="speaker-1">
+                <li></li><li></li><li></li>
+                <li></li><li></li><li></li>
+            </ul>
+            <ul class="speaker-2">
+                <li></li><li></li><li></li>
+                <li></li><li></li><li></li>
+            </ul>
+            
+            <!-- Elementos decorativos de esquinas -->
+            <div class="square-1"></div>
+            <div class="square-2"></div>
+            <div class="square-3"></div>
+            <div class="square-4"></div>
+            
+            <!-- Botones laterales L/R -->
+            <span class="pipka-1"></span>
+            <span class="pipka-2"></span>
+            
+            <!-- Elementos laterales -->
+            <div class="left"></div>
+            <div class="right">
+                <ul>
+                    <li class="diod-1"></li>
+                    <li class="diod-2"></li>
+                </ul>
+            </div>
+            
+            <hr class="l-1">
+            <hr class="l-2">
+        </div>
+        
+        <!-- Bisagra central -->
+        <div class="middle">
+            <span class="mic"></span>
+            <span class="mic-2">mic.</span>
+        </div>
+        
+        <hr class="shape-1">
+        
+        <!-- Parte inferior -->
+        <div class="bottom">
+            <!-- Pantalla inferior -->
+            <div class="b-display-wrap">
+                <div class="b-display">
+                    <form id="pokemonForm" class="mb-3">
+                        <div class="mb-3">
+                            <label for="pokemonSelect" class="form-label">Selecciona un Pokémon:</label>
+                            <select id="pokemonSelect" name="pokemon" class="form-select">
+                                <option value="">-- Selecciona uno --</option>
+                                <!-- Las opciones se cargarán con JavaScript -->
+                            </select>
+                        </div>
+                    </form>
+                    
+                    <div id="pokemonDetails" class="d-none">
+                        <div class="row">
+                            <div class="col-6">Altura: <span id="pokemonHeight">0 m</span></div>
+                            <div class="col-6">Peso: <span id="pokemonWeight">0 kg</span></div>
+                        </div>
+                        
+                        <h3>Estadísticas</h3>
+                        <div id="pokemonStats"></div>
+                        
+                        <h3>Habilidades</h3>
+                        <ul id="pokemonAbilities" class="list-unstyled"></ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Botones A/B/X/Y -->
+            <ul class="buttons">
+                <li class="y"><span>y</span></li>
+                <li class="x"><span>x</span></li>
+                <li class="b"><span>b</span></li>
+                <li class="a"><span>a</span></li>
+            </ul>
+            
+            <!-- Botones START/SELECT -->
+            <ul class="buttons-2">
+                <li><span class="start">start</span></li>
+                <li><span class="select">select</span></li>
+            </ul>
+            
+            <!-- D-pad -->
+            <ul class="buttons-3">
+                <li class="frwd"><span></span></li>
+                <li class="right-2"><span></span></li>
+                <li class="bkwrd"><span></span></li>
+                <li class="left-2"><span></span></li>
+                <li class="center"></li>
+            </ul>
+        </div>
+        
+        <!-- Base de la consola -->
+        <div class="bottom-2">
+            <div class="vol">
+                <span>vol.</span>
+                <div>
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+            <span class="container-base"></span>
+            <div class="headphones"></div>
+            <div class="headphones-2"></div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="scripts.js"></script>
+</body>
+</html>
