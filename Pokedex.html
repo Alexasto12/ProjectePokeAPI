@@ -21,6 +21,11 @@
             <!-- Pantalla superior -->
             <div class="display-wrap">
                 <div class="display">
+                    <!-- Imagen de carga por defecto -->
+                    <div id="defaultScreen" class="default-screen">
+                        <img src="https://i.gifer.com/MH5N.gif" alt="Pokédex Loading" class="loading-gif">
+                    </div>
+                    
                     <div id="pokemonInfo" class="d-none">
                         <div class="pokemon-header">
                             <div class="pokemon-top">
@@ -87,27 +92,35 @@
             <!-- Pantalla inferior -->
             <div class="b-display-wrap">
                 <div class="b-display">
-                    <form id="pokemonForm" class="mb-3">
-                        <div class="mb-3">
-                            <label for="pokemonSelect" class="form-label">Selecciona un Pokémon:</label>
-                            <select id="pokemonSelect" name="pokemon" class="form-select">
-                                <option value="">-- Selecciona uno --</option>
-                                <!-- Las opciones se cargarán con JavaScript -->
-                            </select>
-                        </div>
-                    </form>
+                    <!-- Pantalla inicial con GIF - visible al cargar -->
+                    <div id="startScreen" class="default-screen bottom-default-screen">
+                        <img src="https://steamuserimages-a.akamaihd.net/ugc/799796254101525495/D0E63B0E19BF31D60C23C8ACC10217FAF74F30AA/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" alt="Press START" class="loading-gif">
+                    </div>
                     
-                    <div id="pokemonDetails" class="d-none">
-                        <div class="row">
-                            <div class="col-6">Altura: <span id="pokemonHeight">0 m</span></div>
-                            <div class="col-6">Peso: <span id="pokemonWeight">0 kg</span></div>
+                    <!-- Contenido principal - oculto inicialmente -->
+                    <div id="mainContent" style="display: none;">
+                        <form id="pokemonForm" class="mb-3">
+                            <div class="mb-3">
+                                <label for="pokemonSelect" class="form-label">Selecciona un Pokémon:</label>
+                                <select id="pokemonSelect" name="pokemon" class="form-select">
+                                    <option value="">-- Selecciona uno --</option>
+                                    <!-- Las opciones se cargarán con JavaScript -->
+                                </select>
+                            </div>
+                        </form>
+                        
+                        <div id="pokemonDetails" class="d-none">
+                            <div class="row">
+                                <div class="col-6">Altura: <span id="pokemonHeight">0 m</span></div>
+                                <div class="col-6">Peso: <span id="pokemonWeight">0 kg</span></div>
+                            </div>
+                            
+                            <h3>Estadísticas</h3>
+                            <div id="pokemonStats"></div>
+                            
+                            <h3>Habilidades</h3>
+                            <ul id="pokemonAbilities" class="list-unstyled"></ul>
                         </div>
-                        
-                        <h3>Estadísticas</h3>
-                        <div id="pokemonStats"></div>
-                        
-                        <h3>Habilidades</h3>
-                        <ul id="pokemonAbilities" class="list-unstyled"></ul>
                     </div>
                 </div>
             </div>
@@ -141,11 +154,7 @@
             <div class="vol">
                 <span>vol.</span>
                 <div>
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="50" class="volume-slider">
                 </div>
             </div>
             <span class="container-base"></span>
@@ -153,10 +162,7 @@
             <div class="headphones-2"></div>
         </div>
     </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
+    <!-- Script JS al final del DOM (aunque nos aseguraremos de que cargue todo antes) -->
     <script src="scripts.js"></script>
 </body>
 </html>

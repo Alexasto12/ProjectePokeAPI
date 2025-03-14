@@ -1,29 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
+/* Estil base pel cos del document */
 body {
     background: rgb(32, 32, 32);
     font-family: 'Roboto', sans-serif;
 }
 
+/* Contenidor principal amb efecte de desenfocament */
 .wrapper {
     position: relative;
-    width: 100%;
-    height: 1000px;
+    display: flex;
+    justify-content: center;
+    height: auto;
+    height: 98vh;
     background-image: linear-gradient(90deg, #FAFAFC, #D5D8E7 90%);
     filter: blur(2px);
 }
 
+/* Estructura principal de la Nintendo DS Lite */
 .ds-lite {
     position: absolute;
     top: 60px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) scale(1.15); /* Augmentat de 1.0 a 1.15 */
     perspective: 1000px;
     max-width: 750px;
     margin: 20px 0;
 }
 
-/* Parte superior */
+/* Part superior de la consola */
 .top {
     position: relative;
     top: -3px;
@@ -39,9 +44,10 @@ body {
     inset -17px 0 32px #FFFFFF, 
     inset 20px 0 35px #B2B5B8, 
     inset 0 20px 45px #ADB0B5;
-    transform: rotateX(0deg); /* Pantalla totalmente abierta */
+    transform: rotateX(0deg); /* Pantalla completament oberta */
 }
 
+/* Marca Nintendo DS a la part superior */
 .ds-brand {
     position: absolute;
     top: 8px;
@@ -52,7 +58,7 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* Pantalla superior */
+/* Contenidor de la pantalla superior */
 .display-wrap {
     position: absolute;
     top: 37px;
@@ -71,6 +77,7 @@ body {
     overflow: hidden;
 }
 
+/* Pantalla superior */
 .display {
     width: 100%;
     height: 100%;
@@ -81,7 +88,7 @@ body {
     overflow: auto;
 }
 
-/* Altavoces */
+/* Altaveus de la consola */
 .speaker-1, .speaker-2 {
     position: absolute;
     top: 160px;
@@ -92,14 +99,17 @@ body {
     margin: 0;
 }
 
+/* Posició de l'altaveu esquerre */
 .speaker-1 {
     left: 43px;
 }
 
+/* Posició de l'altaveu dret */
 .speaker-2 {
     left: 603px;
 }
 
+/* Orificis dels altaveus */
 .speaker-1 li, .speaker-2 li {
     float: left;
     margin: 10px;
@@ -110,7 +120,7 @@ body {
     box-shadow: 1px 1px 1px white;
 }
 
-/* Esquinas reforzadas */
+/* Cantonades reforçades de la consola */
 .square-1, .square-2, .square-3, .square-4 {
     position: absolute;
     width: 22px;
@@ -123,28 +133,32 @@ body {
     inset 2px 0 1px rgba(174, 177, 180, 0.01);
 }
 
+/* Cantonada superior esquerra */
 .square-1 {
     top: 28px;
     left: 79px;
 }
 
+/* Cantonada superior dreta */
 .square-2 {
     top: 28px;
     left: 614px;
     opacity: 0.8;
 }
 
+/* Cantonada inferior esquerra */
 .square-3 {
     top: 322px;
     left: 84px;
 }
 
+/* Cantonada inferior dreta */
 .square-4 {
     top: 322px;
     left: 616px;
 }
 
-/* Botones laterales L/R */
+/* Botons laterals L/R */
 .pipka-1, .pipka-2 {
     position: absolute;
     top: 28px;
@@ -152,6 +166,7 @@ body {
     height: 49px;
 }
 
+/* Botó lateral esquerre (L) */
 .pipka-1 {
     width: 10px;
     left: 0;
@@ -165,6 +180,7 @@ body {
     inset 0 -2px 2px #A7ACB0;
 }
 
+/* Botó lateral dret (R) */
 .pipka-2 {
     left: 721px;
     width: 8px;
@@ -177,7 +193,7 @@ body {
     inset 0 1px 1px white;
 }
 
-/* Líneas de cierre */
+/* Línies de tancament de la consola */
 .l-1, .l-2 {
     position: absolute;
     bottom: 0px;
@@ -186,13 +202,15 @@ body {
     background: #DADCDD;
 }
 
+/* Línia diagonal dreta */
 .l-1 {
     left: 539px;
     width: 100px;
     box-shadow: 2px 0 0px rgb(226, 226, 226);
-    transform: skew(-39deg);
+    transform: skew(-45deg);
 }
 
+/* Línia diagonal esquerra */
 .l-2 {
     left: 85px;
     width: 500px;
@@ -200,40 +218,43 @@ body {
     transform: skew(39deg);
 }
 
-/* LED indicador */
+/* Indicadors LED */
 .diod-1, .diod-2 {
     position: absolute;
     top: 0px;
-    width: 6px;
-    height: 14px;
+    width: 5px;
+    height: 20px;
     border-radius: 0 0 3px 3px;
 }
 
+/* LED d'energia */
 .diod-1 {
     left: 36px;
-    background: #5B6064;
+    background: #c9780f;
 }
 
+/* LED de càrrega amb animació */
 .diod-2 {
-    left: 48px;
+    left: 50px;
     background: #95CA3C;
     animation: light linear 1s infinite;
 }
 
+/* Animació pel LED de càrrega */
 @keyframes light {
     0%, 100% { background: #5B6064; }
-    50% { background: #95CA3C; }
+    50% { background: #b5ca3c; }
 }
 
-/* Bisagra central */
+/* Bisagra central - ajustada per millor encaix */
 .middle {
     position: absolute;
     bottom: -52px;
-    left: 81px;
+    left: 76px; 
     z-index: 3;
     display: block;
-    width: 570px;
-    height: 54px;
+    width: 580px; 
+    height: 52px; 
     border-radius: 30px 30px 30px 30px / 140px 140px 140px 140px;
     background-image: linear-gradient(#FFFFFF 30%, rgba(183, 186, 191, 0.93) 93%, rgba(31, 32, 34, 0.36) 104%);
     box-shadow: 0 -1px 1px white,    
@@ -246,17 +267,18 @@ body {
     0 7px 11px -10px black;
 }
 
-.midle::after {
+/* Ombra de la frontissa */
+.middle::after {
     position: absolute;
     bottom: -2px;
     left: 4px;
-    width: 562px;
+    width: 562px; 
     height: 2px;
     background-image: linear-gradient(rgb(114, 114, 114), rgb(173, 173, 173));
     content: "";
 }
 
-/* Micrófono */
+/* Micròfon de la consola */
 .mic {
     position: absolute;
     top: 15px;
@@ -269,6 +291,7 @@ body {
     box-shadow: 1px 1px 1px white;
 }
 
+/* Text indicador del micròfon */
 .mic-2 {
     position: absolute;
     top: 16px;
@@ -282,13 +305,13 @@ body {
     cursor: default;
 }
 
-/* Línea diagonal */
+/* Línia diagonal decorativa */
 .shape-1 {
     position: absolute;
     bottom: -65px;
-    left: 164px;
+    left: 159px; 
     z-index: 5;
-    width: 403px;
+    width: 413px; 
     height: 8px;
     border: none;
     background: rgb(245, 245, 245);
@@ -296,16 +319,17 @@ body {
     transform: skew(-66deg);
 }
 
-/* Extremos de bisagra */
+/* Extrems de la frontissa */
 .left, .right {
     position: absolute;
-    bottom: -56px;
-    height: 52px;
+    bottom: -59px;
+    height: 56px;
 }
 
+/* Extrem esquerre de la frontissa */
 .left {
-    left: 3px;
-    width: 86px;
+    left: -12px;
+    width: 95px;
     border-radius: 29px 0px 0 25px / 25px 0 0 11px;
     background-image: linear-gradient(#FFFFFF 30%, rgba(183, 186, 191, 0.93) 93%);
     box-shadow: -2px 0 0 rgba(190, 191, 192, 0.37), 
@@ -315,9 +339,10 @@ body {
     inset 24px 0 7px -18px #C9CCD1;
 }
 
+/* Extrem dret de la frontissa */
 .right {
-    right: 1px;
-    width: 91px;
+    right: -14px;
+    width: 95px;
     border-bottom: 1px solid rgb(70, 70, 70);
     border-radius: 0 29px 20px 0 / 0 28px 11px 0;
     background-image: linear-gradient(#FFFFFF 30%, rgba(183, 186, 191, 0.93) 93%);
@@ -325,13 +350,14 @@ body {
     inset -82px 0 28px -68px rgba(164, 167, 172, 0.6);
 }
 
+/* Contingut de l'extrem dret */
 .right ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
-/* Parte inferior */
+/* Part inferior de la consola */
 .bottom {
     position: absolute;
     bottom: -246px;
@@ -353,7 +379,7 @@ body {
     transform: rotateX(38deg);
 }
 
-/* Pantalla inferior - Corregir problema de scroll horizontal */
+/* Contenidor de la pantalla inferior */
 .b-display-wrap {
     position: absolute;
     top: 5px;
@@ -373,6 +399,7 @@ body {
     -8px 13px 14px rgba(238, 238, 238, 0.72);
 }
 
+/* Pantalla inferior amb correcció d'scrolling horitzontal */
 .b-display {
     width: 100%;
     height: 98%;
@@ -387,7 +414,7 @@ body {
     overscroll-behavior: contain;
 }
 
-/* Botones de acción ABXY */
+/* Botons d'acció ABXY */
 .buttons {
     position: absolute;
     top: 20px;
@@ -399,6 +426,7 @@ body {
     margin: 0;
 } 
 
+/* Format comú pels botons d'acció */
 .buttons li {
     position: absolute;
     float: left;
@@ -416,26 +444,31 @@ body {
     6px 5px 6px rgba(196, 199, 204, 0.6);
 }
 
+/* Posició del botó X */
 .x {
     top: 0px;
     left: 45px;
 }
 
+/* Posició del botó Y */
 .y {
     top: 20px;
     left: 0px;
 }
 
+/* Posició del botó B */
 .b {
     bottom: 0px;
     left: 45px;
 }
 
+/* Posició del botó A */
 .a {
     top: 20px;
     right: 0px;
 }
 
+/* Lletres dels botons */
 .buttons li span {
     position: relative;
     top: 0px;
@@ -449,7 +482,7 @@ body {
     transform: rotateX(43deg);
 }
 
-/* Botones START/SELECT */
+/* Botons START/SELECT */
 .buttons-2 {
     position: absolute;
     right: 124px;
@@ -484,6 +517,450 @@ body {
     letter-spacing: 1px;
     font-size: 8px;
     font-family: 'arial';
+}
+
+/* Millora de l'aspecte del botó START per indicar que és interactiu */
+.buttons-2 li span.start {
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+/* Creueta direccional (D-pad) */
+.buttons-3 {
+    position: absolute;
+    top: 32px;
+    left: 30px;
+    width: 118px;
+    height: 64px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.frwd, .bkwrd, .left-2, .right-2, .center {
+    position: absolute;
+    background: white;
+}
+
+/* Botó superior */
+.frwd {
+    left: 50px;
+    width: 31px;
+    height: 19px;
+    border-radius: 2px 2px 0 0;
+    box-shadow: -6px 0 1px -3px #EAEAEA, 4px 0 0 -2px #EAEAEA, 10px 2px 5px -4px #B8B8B8;
+}
+
+/* Botó dret */
+.left-2 {
+    top: 17px;
+    right: 1px;
+    width: 34px;
+    height: 26px;
+    border-radius: 0 2px 2px 0;
+    box-shadow: inset -2px 3px 1px -2px rgb(243, 243, 243), inset 0px -11px 4px -2px rgba(223, 223, 223, 1), 2px 0px 0px white, 7px 4px 1px -3px #919191, 0 2px 1px -1px #525252;
+}
+
+/* Botó inferior */
+.bkwrd {
+    top: 41px;
+    left: 48px;
+    z-index: 2;
+    width: 36px;
+    height: 25px;
+    border-radius: 0 0 2px 2px;
+    box-shadow: inset 0 -2px 1px #818080, inset 0px -12px 15px -7px #A2A6AA, inset 2px 0 1px white, inset 0px -15px 2px 0px #EBE8E7, 3px 0px 1px -1px #AFAFAF, -3px 1px 1px -1px rgba(218, 218, 218, 0.67);
+}
+
+/* Botó esquerre */
+.right-2 {
+    top: 18px;
+    left: 15px;
+    width: 34px;
+    height: 25px;
+    border-radius: 2px 0 0 2px;
+    box-shadow: inset 1px 0 1px white, -6px 6px 1px -4px rgba(204, 204, 204, 1), 0px 3px 0px rgba(209, 209, 209, 1), inset 0px -11px 2px -1px #E6E6E6, inset 0 -1px 0 #A9ACAF, inset 0 -19px 13px -13px #BFC2C7;
+}
+
+/* Centre de la creueta */
+.center {
+    top: 16px;
+    left: 50px;
+    width: 33px;
+    height: 29px;
+}
+
+/* Marques dels botons direccionals */
+.frwd span, .bkwrd span, .left-2 span, .right-2 span {
+    position: absolute;
+    background: #DFDFDF;
+    border-radius: 2px;
+}
+
+/* Marca del botó superior */
+.frwd span {
+    top: 5px;
+    left: 15px;
+    width: 4px;
+    height: 10px;
+}
+
+/* Marca del botó inferior */
+.bkwrd span {
+    top: -5px;
+    left: 15px;
+    width: 4px;
+    height: 10px;
+}
+
+/* Marca del botó esquerre */
+.left-2 span {
+    top: 6px;
+    left: 5px;
+    width: 20px;
+    height: 3px;
+}
+
+/* Marca del botó dret */
+.right-2 span {
+    top: 6px;
+    left: 8px;
+    width: 20px;
+    height: 3px;
+}
+
+/* Base */
+.bottom-2 {
+    position: absolute;
+    bottom: -321px;
+    left: -45px;
+    z-index: 1;
+    width: 825px;
+    height: 88px;
+    border-left: 2px solid #C1C1C3;
+    border-radius: 0 0 25px 25px;
+    background: #CCCED1;
+    box-shadow: inset 9px 0px 0px #D8DBDE,
+    inset 12px 0 15px #E9ECED;
+    transform: rotateX(-18deg);
+}
+
+/* Control de volum */
+.vol {
+    position: absolute;
+    top: 18px;
+    left: 80px;
+    width: 130px;
+    height: 60px;
+    text-transform: uppercase;
+}
+
+/* Indicador de volum */
+.vol span {
+    position: relative;
+    left: 5px;
+    display: inline-block;
+    padding: 10px 0;
+    color: #A7A69F;
+    text-shadow: 1px -2px 1px rgba(172, 175, 172, 0.85);
+    font-weight: bold;
+    font-size: 12px;
+    font-family: "arial";
+    cursor: default;
+}
+
+/* Símbols de volum + i - */
+.vol span::after {
+    margin-left: 15px;
+    content: "+";
+}
+
+.vol span::before {
+    margin-right: 20px;
+    content: "-";
+}
+
+/* Contenidor del control lliscant de volum */
+.vol div {
+    width: 76px;
+    height: 18px;
+    border-top: 1px solid #D1D1D1;
+    border-right: 3px solid #B6B6B6;
+    border-bottom: 3px solid #C7C2C2;
+    border-radius: 5px;
+    background-image: linear-gradient(#BDBEBE, #858585);
+    box-shadow: inset 0 -1px 0 #8D8F91, inset 0 -3px 0 rgba(164, 169, 173, 0.97), 0 -1px 2px rgba(240, 240, 240, 1), inset 0 2px 0 rgba(177, 177, 177, 0.82), inset 0 3px 0 rgba(219, 219, 219, 0.93), 0 2px 1px rgba(255, 255, 255, 0.72), 0 4px 2px #BABDC0;
+}
+
+/* Botons del control de volum */
+.vol ul {
+    position: relative;
+    top: 1px;
+    left: 3px;
+    padding: 5px 0 0 4px;
+    width: 33px;
+    height: 17px;
+    border-top: 3px solid rgb(172, 172, 172);
+    border-radius: 4px;
+    background: #BABDC2;
+    box-shadow: inset 0px 2px 1px 2px #D5D8DB, 0 -3px 8px -2px rgb(20, 20, 20);
+    cursor: pointer;
+    list-style-type: none;
+}
+
+/* Estil per als elements del control de volum */
+.vol ul li {
+    float: left;
+    margin: 1px;
+    border-radius: 2px;
+    box-shadow: inset 2px 3px 2px #D5D8DB, 2px -1px 3px #96999C;
+}
+
+/* Primer element del control de volum */
+.vol ul li:first-child {
+    position: relative;
+    top: 7px;
+    width: 7px;
+    height: 7px;
+}
+
+/* Control lliscant de volum */
+.volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 76px;
+    height: 16px;
+    border-radius: 5px;
+    background: linear-gradient(to right, #BABDC2, #8D8F91);
+    outline: none;
+    box-shadow: inset 0 -1px 0 #8D8F91, 
+                inset 0 -3px 0 rgba(164, 169, 173, 0.97), 
+                0 -1px 2px rgba(240, 240, 240, 1), 
+                inset 0 2px 0 rgba(177, 177, 177, 0.82), 
+                inset 0 3px 0 rgba(219, 219, 219, 0.93), 
+                0 2px 1px rgba(255, 255, 255, 0.72), 
+                0 4px 2px #BABDC0;
+    cursor: pointer;
+}
+
+/* Estil del botó lliscant per a Chrome */
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 18px;
+    background: #FFFFFF;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    border: 2px solid #BABDC2;
+}
+
+/* Estil del botó lliscant per a Firefox */
+.volume-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: #FFFFFF;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    border: 2px solid #BABDC2;
+}
+
+/* Estat actiu del control de volum per a Chrome */
+.vol.playing .volume-slider::-webkit-slider-thumb {
+    background: linear-gradient(to bottom, #c7c7c7 0%, #4c504d 100%);
+}
+
+/* Estat actiu del control de volum per a Firefox */
+.vol.playing .volume-slider::-moz-range-thumb {
+    background: linear-gradient(to bottom, #9cff9c 0%, #44c767 100%);
+}
+
+/* Indicador de reproducció de so */
+.vol.playing::after {
+    content: "♫";
+    position: absolute;
+    top: -15px;
+    right: -5px;
+    font-size: 14px;
+    color: #44c767;
+    animation: float 2s infinite ease-in-out;
+}
+
+/* Contingut de l'extrem dret */
+.right ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Part inferior de la consola */
+.bottom {
+    position: absolute;
+    bottom: -246px;
+    left: -25px;
+    z-index: 2;
+    width: 787px;
+    height: 199px;
+    border-radius: 0 0 28px 28px / 0 0 13px 13px;
+    background-image: linear-gradient(#FBFBFB, #FFFFFF);
+    box-shadow: 3px 0 1px #A3A6AB,   
+    inset -2px 0 0px #BFC2C5,   
+    -3px 0 1px #B0B2B5,   
+    inset 2px 0 1px #D4D6D9,   
+    inset 3px 0 1px #D8DBDC,   
+    inset 0 -4px 1px rgba(195, 198, 199, 0.82),   
+    0 1px 0px rgba(142, 148, 153, 0.83),   
+    0 3px 2px #D6D9DE,
+    inset 0 5px 6px -6px rgba(0, 0, 0, 0.72);
+    transform: rotateX(38deg);
+}
+
+/* Contenidor de la pantalla inferior */
+.b-display-wrap {
+    position: absolute;
+    top: 5px;
+    left: 187px;
+    overflow: hidden;
+    padding: 12px 20px 9px 18px;
+    width: 390px;
+    height: 144px;
+    border-radius: 4px;
+    box-shadow: inset 2px 0 0px rgba(170, 173, 176, 0.36), 
+    inset 0 -4px 5px rgba(0, 0, 0, 0.11),
+    0 2px 2px white, 
+    inset 0 1px 0px rgba(129, 138, 141, 0.55), 
+    inset -3px 0px 8px rgba(0, 0, 0, 0.09),  
+    15px 0 20px rgba(220, 223, 224, 0.58),   
+    18px 15px 15px rgba(227, 230, 231, 0.73),
+    -8px 13px 14px rgba(238, 238, 238, 0.72);
+}
+
+/* Pantalla inferior amb correcció d'scrolling horitzontal */
+.b-display {
+    width: 100%;
+    height: 98%;
+    border: 1px solid #202020;
+    border-top: 2px solid black;
+    border-radius: 4px;
+    background: white;
+    padding: 8px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    overscroll-behavior: contain;
+}
+
+/* Botons d'acció ABXY */
+.buttons {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    width: 145px;
+    height: 80px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+} 
+
+/* Format comú pels botons d'acció */
+.buttons li {
+    position: absolute;
+    float: left;
+    margin: 5px;
+    width: 43px;
+    height: 27px;
+    border-radius: 120px 120px 120px 120px / 72px 72px 72px 72px;
+    background: #fff;
+    box-shadow: 0px 3px 2px rgba(255, 255, 255, 1), 
+    2px 1px 0px rgba(41, 42, 43, 0.42), 
+    inset -5px 1px 6px -4px rgba(151, 154, 157, 0.25), 
+    inset -4px -7px 10px -5px rgba(190, 190, 190, 0.85), 
+    -1px 3px 0 rgba(0, 0, 0, 0.33), 
+    1px 3px 0px rgba(0, 0, 0, 0.2), 
+    6px 5px 6px rgba(196, 199, 204, 0.6);
+}
+
+/* Posició del botó X */
+.x {
+    top: 0px;
+    left: 45px;
+}
+
+/* Posició del botó Y */
+.y {
+    top: 20px;
+    left: 0px;
+}
+
+/* Posició del botó B */
+.b {
+    bottom: 0px;
+    left: 45px;
+}
+
+/* Posició del botó A */
+.a {
+    top: 20px;
+    right: 0px;
+}
+
+/* Lletres dels botons */
+.buttons li span {
+    position: relative;
+    top: 0px;
+    left: 16px;
+    display: block;
+    color: #CACAC9;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: 'arial';
+    transform: rotateX(43deg);
+}
+
+/* Botons START/SELECT */
+.buttons-2 {
+    position: absolute;
+    right: 124px;
+    bottom: 20px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.buttons-2 li {
+    margin: 12px;
+    width: 18px;
+    height: 10px;
+    border-radius: 120px 120px 120px 120px / 72px 72px 72px 72px;
+    background: #fff;
+    box-shadow: 0px 3px 2px rgba(255, 255, 255, 1),    
+    2px 1px 0px rgba(41, 42, 43, 0.42),    
+    inset -5px 1px 6px -4px rgba(151, 154, 157, 0.25),   
+    inset -4px -7px 10px -5px rgba(190, 190, 190, 0.24),    
+    -1px 3px 0 rgba(0, 0, 0, 0.33),    
+    1px 3px 0px rgba(0, 0, 0, 0.2),    
+    3px 4px 6px rgba(196, 199, 204, 0.6);
+}
+
+.buttons-2 span {
+    position: relative;
+    top: -5px;
+    left: 25px;
+    display: inline-block;    
+    color: #CACAC9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 8px;
+    font-family: 'arial';
+}
+
+/* Mejorar el aspecto del botón START para indicar que es interactivo */
+.buttons-2 li span.start {
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
 }
 
 /* D-pad */
@@ -596,7 +1073,7 @@ body {
     transform: rotateX(-18deg);
 }
 
-/* Control de volumen */
+/* Control de volum */
 .vol {
     position: absolute;
     top: 18px;
@@ -608,13 +1085,13 @@ body {
 
 .vol span {
     position: relative;
-    left: 0px;
+    left: 5px;
     display: inline-block;
-    padding: 5px 0;
+    padding: 10px 0;
     color: #A7A69F;
-    text-shadow: 1px -3px 1px rgba(172, 175, 172, 0.85);
+    text-shadow: 1px -2px 1px rgba(172, 175, 172, 0.85);
     font-weight: bold;
-    font-size: 14px;
+    font-size: 12px;
     font-family: "arial";
     cursor: default;
 }
@@ -637,7 +1114,7 @@ body {
     border-bottom: 3px solid #C7C2C2;
     border-radius: 5px;
     background-image: linear-gradient(#BDBEBE, #858585);
-    box-shadow: inset 0 -1px 0 #8D8F91, inset 0 -3px 0 rgba(164, 169, 173, 0.97), 0 -1px 2px rgba(240, 240, 240, 1), inset 0 2px 0 rgba(177, 177, 177, 0.82), inset 0 3px 0 rgba(219, 219, 219, 0.93), 0 2px 1px rgba(255, 255, 255, 0.72), 0 4px 2px #BABDC0, inset -3px 0 2px rgba(190, 193, 196, 0.81), inset -4px 0 0px #797979, 2px 0 0 rgb(143, 143, 143);
+    box-shadow: inset 0 -1px 0 #8D8F91, inset 0 -3px 0 rgba(164, 169, 173, 0.97), 0 -1px 2px rgba(240, 240, 240, 1), inset 0 2px 0 rgba(177, 177, 177, 0.82), inset 0 3px 0 rgba(219, 219, 219, 0.93), 0 2px 1px rgba(255, 255, 255, 0.72), 0 4px 2px #BABDC0;
 }
 
 .vol ul {
@@ -669,47 +1146,66 @@ body {
     height: 7px;
 }
 
-/* Puerto de auriculares */
-.headfones, .headfones-2 {
+/* Añadir estos estilos al final del archivo CSS */
+.volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 76px;
+    height: 16px;
+    border-radius: 5px;
+    background: linear-gradient(to right, #BABDC2, #8D8F91);
+    outline: none;
+    box-shadow: inset 0 -1px 0 #8D8F91, 
+                inset 0 -3px 0 rgba(164, 169, 173, 0.97), 
+                0 -1px 2px rgba(240, 240, 240, 1), 
+                inset 0 2px 0 rgba(177, 177, 177, 0.82), 
+                inset 0 3px 0 rgba(219, 219, 219, 0.93), 
+                0 2px 1px rgba(255, 255, 255, 0.72), 
+                0 4px 2px #BABDC0;
+    cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 18px;
+  
+    background: #FFFFFF;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    border: 2px solid #BABDC2;
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+   
+    background: #FFFFFF;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    border: 2px solid #BABDC2;
+}
+
+.vol.playing .volume-slider::-webkit-slider-thumb {
+    background: linear-gradient(to bottom, #c7c7c7 0%, #4c504d 100%);
+}
+
+.vol.playing .volume-slider::-moz-range-thumb {
+    background: linear-gradient(to bottom, #9cff9c 0%, #44c767 100%);
+}
+
+.vol.playing::after {
+    content: "♫";
     position: absolute;
-    background: #131613;
+    top: -15px;
+    right: -5px;
+    font-size: 14px;
+    color: #44c767;
+    animation: float 2s infinite ease-in-out;
 }
 
-.headfones {
-    top: 40px;
-    right: 114px;
-    width: 39px;
-    height: 17px;
-    border-top: 5px solid #979797;
-    border-bottom: 5px solid #D2D5D8;
-    border-left: 3px solid #8B8B8B;
-    border-radius: 4px 0 0 4px;
-    box-shadow: -2px 0 2px #7A7D80, -3px -1px 0px #747474, inset -9px -4px 5px 1px #3F3C3C;
-}
 
-.headfones-2 {
-    top: 35px;
-    right: 93px;
-    z-index: 1;
-    width: 27px;
-    height: 25px;  
-    border-top: 6px solid #979797;
-    border-right: 2px solid #DADADA;  
-    border-bottom: 5px solid #D2D5D8;
-    border-radius: 100%;
-    box-shadow: 2px 0 0px #858585, 3px -1px 2px #F6F3F3, inset -3px -2px 2px rgba(255, 255, 255, 0.27), inset 3px -4px 3px #3F3C3C;
-}
-
-.headfones-2::after {
-    position: absolute;
-    top: 4px;
-    left: -3px;
-    display: block;
-    width: 6px;
-    height: 17px;
-    background: #363636;
-    content: "";
-}
 
 /* Contenido Pokedex */
 h1 {
@@ -732,20 +1228,33 @@ h2, h3 {
 }
 
 .pokemon-image {
-    max-height: 80px;
-    margin: 0 auto;
+    max-height: 100px; 
+    max-width: 100px; 
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+    animation: sway 3s ease-in-out infinite;
+    transform-origin: bottom center;
+    transition: all 0.3s;
+}
+
+.pokemon-image:hover {
+    animation: float 0.8s ease-in-out infinite;
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3));
+    transform: scale(1.05);
 }
 
 #pokemonName {
     text-transform: uppercase;
-    font-size: 14px !important;
-    text-align: center;
+    font-size: 18px !important; 
+    margin-bottom: 3px !important;
+    color: #333;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.8);
 }
 
 #pokemonNumber {
     color: #666 !important;
-    font-size: 10px;
-    text-align: center;
+    font-size: 14px; 
+    margin-bottom: 5px !important;
 }
 
 #pokemonTypes {
@@ -755,10 +1264,9 @@ h2, h3 {
 }
 
 .pokemon-type {
-    font-size: 8px;
-    padding: 5px;
-    margin: 0 2px;
-    border-radius: 3px;
+    font-size: 10px; 
+    padding: 3px 8px; 
+    border-radius: 10px;
     color: white;
     text-transform: uppercase;
     font-weight: bold;
@@ -802,7 +1310,7 @@ h2, h3 {
     width: 35%;
     text-align: right;
     padding-right: 5px;
-    font-size: 8px;
+    font-size: 10px; 
     font-weight: bold;
     color: #555;
     text-transform: uppercase;
@@ -811,7 +1319,7 @@ h2, h3 {
 
 .stat-bar {
     width: 65%;
-    height: 5px;
+    height: 6px; 
     background-color: #eee;
     border-radius: 3px;
     position: relative;
@@ -925,22 +1433,20 @@ h2, h3 {
     50% { opacity: 1; }
 }
 
-/* Responsive para visualización en dispositivos móviles */
+/* Responsive per visualització en dispositius mòbils */
 @media (max-width: 768px) {
     .ds-lite {
-        transform: scale(0.8);
-        transform-origin: top left;
+        transform: translateX(-50%) scale(0.95); /* Ajustat per a que sigui més gran en mòbils */
     }
 }
 
 @media (max-width: 500px) {
     .ds-lite {
-        transform: scale(0.6);
-        transform-origin: top left;
+        transform: translateX(-50%) scale(0.75); /* Ajustat per a que sigui més gran en mòbils petits */
     }
 }
 
-/* Mensaje error */
+/* Missatge d'error */
 .error-message {
     color: #d32f2f;
     text-align: center;
@@ -948,37 +1454,108 @@ h2, h3 {
     padding: 10px;
 }
 
-/* Mejorar el estilo del formulario */
+/* Millorar l'estil del formulari */
 #pokemonForm {
     margin-bottom: 8px;
 }
 
 #pokemonForm .form-label {
-    font-size: 10px;
+    font-size: 12px; 
     color: #333;
     font-weight: bold;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
     display: block;
 }
 
 #pokemonForm .form-select {
-    font-size: 9px;
-    padding: 2px 4px;
-    border-radius: 3px;
-    border: 1px solid #ccc;
+    font-size: 11px; 
+    padding: 6px 10px; 
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    width: 100%;
+    background-color: #f8f8f8;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 5px center;
+    background-size: 16px;
+}
+
+/* Estil per al contenidor del select */
+.select-container {
+    position: relative;
     width: 100%;
 }
 
-/* Mejorar el estilo de la información del Pokémon */
+/* Estil per al dropdown personalitzat */
+.custom-select-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 90px; /* Alçada per mostrar 3 opcions */
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.custom-select-dropdown.show {
+    display: block;
+}
+
+/* Estil per a les opcions */
+.select-option {
+    padding: 6px 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 11px;
+}
+
+.select-option:hover {
+    background-color: #f0f0f0;
+}
+
+.select-option.selected {
+    background-color: #e0e0e0;
+    font-weight: bold;
+}
+
+/* Estil per al scrollbar del dropdown */
+.custom-select-dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-select-dropdown::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.custom-select-dropdown::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.custom-select-dropdown::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+}
+
+/* Millorar l'estil de la informació del Pokémon */
 #pokemonDetails {
     background-color: #f8f9fa !important;
     border-radius: 5px;
     padding: 6px !important;
-    font-size: 9px;
+    font-size: 11px; 
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-/* Información de altura y peso */
+/* Informació d'alçada i pes */
 #pokemonDetails .row {
     display: flex;
     justify-content: space-between;
@@ -999,9 +1576,9 @@ h2, h3 {
     float: right;
 }
 
-/* Títulos de sección */
+/* Títols de secció */
 #pokemonDetails h3 {
-    font-size: 10px !important;
+    font-size: 12px !important; 
     color: #1a237e;
     margin-top: 8px !important;
     margin-bottom: 4px !important;
@@ -1009,7 +1586,7 @@ h2, h3 {
     padding-bottom: 3px;
 }
 
-/* Habilidades */
+/* Habilitats */
 #pokemonAbilities {
     padding-left: 12px;
     margin-top: 3px;
@@ -1035,7 +1612,7 @@ h2, h3 {
     font-style: italic;
 }
 
-/* Nuevo diseño de la información del Pokémon en la pantalla superior */
+/* Nou disseny de la informació del Pokémon a la pantalla superior */
 .pokemon-top {
     display: flex;
     margin-bottom: 10px;
@@ -1054,12 +1631,23 @@ h2, h3 {
     background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(240,240,240,1) 100%);
     border-radius: 50%;
     margin-right: 10px;
+    overflow: visible;
+    position: relative;
 }
 
 .pokemon-image {
-    max-height: 90px;
-    max-width: 90px;
+    max-height: 100px; 
+    max-width: 100px; 
     filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+    animation: sway 3s ease-in-out infinite;
+    transform-origin: bottom center;
+    transition: all 0.3s;
+}
+
+.pokemon-image:hover {
+    animation: float 0.8s ease-in-out infinite;
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3));
+    transform: scale(1.05);
 }
 
 .pokemon-info-container {
@@ -1069,8 +1657,8 @@ h2, h3 {
 
 #pokemonName {
     text-transform: uppercase;
-    font-size: 16px !important;
-    margin-bottom: 2px !important;
+    font-size: 18px !important; 
+    margin-bottom: 3px !important;
     color: #333;
     font-weight: bold;
     text-shadow: 0 1px 1px rgba(255,255,255,0.8);
@@ -1078,7 +1666,7 @@ h2, h3 {
 
 #pokemonNumber {
     color: #666 !important;
-    font-size: 12px;
+    font-size: 14px; 
     margin-bottom: 5px !important;
 }
 
@@ -1089,12 +1677,12 @@ h2, h3 {
 }
 
 .pokemon-type {
-    font-size: 9px;
-    padding: 3px 6px;
+    font-size: 10px; 
+    padding: 3px 8px; 
     border-radius: 10px;
 }
 
-/* Sección de descripción */
+/* Secció de descripció */
 .pokemon-description {
     background-color: #fff;
     border: 1px solid #e0e0e0;
@@ -1107,9 +1695,164 @@ h2, h3 {
 }
 
 .description-text {
-    font-size: 10px !important;
+    font-size: 11px !important; /* Aumentado de 10px a 11px */
     line-height: 1.4;
     color: #555;
     margin: 0;
     font-style: italic;
+}
+
+/* Animacions per a la imatge del Pokémon */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Animació de balanceig */
+@keyframes sway {
+    0%, 100% {
+        transform: translateY(0) rotate(-1deg);
+    }
+    50% {
+        transform: translateY(-3px) rotate(1deg);
+    }
+}
+
+/* Efecte visual durant la reproducció del so */
+@keyframes sound-playing {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Classe aplicada a la imatge quan es reprodueix so */
+.pokemon-image.playing-sound {
+    animation: sound-playing 0.3s infinite;
+}
+
+/* Botó per reproduir so */
+.sound-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Efectes hover i active pel botó de so */
+.sound-button:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.1);
+}
+
+.sound-button:active {
+    transform: scale(0.95);
+}
+
+/* Icona SVG del botó de so */
+.sound-button svg {
+    width: 14px;
+    height: 14px;
+    fill: #333;
+}
+
+.default-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.loading-gif {
+    width: 100%;
+    height: 100%;
+    object-fit: fill; 
+    object-position: center; /* Centrar la imagen */
+}
+
+/* Estil per al select deshabilitat */
+.disabled-select {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Animació del botó START quan es prem */
+.active-button {
+    transform: scale(0.95);
+    background: linear-gradient(to bottom, #d4d4d4, #ababab) !important;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.3) !important;
+}
+
+
+.bottom-default-screen {
+    background-color: #111;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 3px;
+    position: relative;
+    padding: 0; /* Eliminar qualsevol padding */
+}
+
+/* Assegurar que el contenidor del GIF ocupi tot l'espai */
+#startScreen {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+@keyframes blink-text {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Estil per al botó personalitzat de select */
+.custom-select-button {
+    font-size: 11px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    width: 100%;
+    background-color: #f8f8f8;
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+    color: #333;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 5px center;
+    background-size: 16px;
+}
+
+.custom-select-button:focus {
+    outline: none;
+    border-color: #aaa;
+}
+
+/* Assegurar que les opcions del dropdown siguin visibles per sobre de la resta */
+.custom-select-dropdown {
+    z-index: 20;
 }
