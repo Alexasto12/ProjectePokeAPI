@@ -10,159 +10,322 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="wrapper">
-        <p></p>
-    </div>
-    <div class="ds-lite">
-        <!-- Parte superior -->
-        <div class="top">
-            <div class="ds-brand">Nintendo DS Lite</div>
-            
-            <!-- Pantalla superior -->
-            <div class="display-wrap">
-                <div class="display">
-                    <!-- Imagen de carga por defecto -->
-                    <div id="defaultScreen" class="default-screen">
-                        <img src="https://i.gifer.com/MH5N.gif" alt="Pokédex Loading" class="loading-gif">
-                    </div>
+    <!-- Botón para alternar la sección de explicación -->
+    <button id="toggleExplanation" class="toggle-explanation">☰</button>
+    
+    <div class="project-container">
+        <!-- Sección 1: Nintendo DS con la aplicación Pokédex -->
+        <div class="ds-section">
+            <div class="wrapper">
+                <p></p>
+            </div>
+            <div class="ds-lite">
+                <!-- Parte superior -->
+                <div class="top">
+                    <div class="ds-brand">Nintendo DS Lite</div>
                     
-                    <div id="pokemonInfo" class="d-none">
-                        <div class="pokemon-header">
-                            <div class="pokemon-top">
-                                <div class="pokemon-image-container">
-                                    <img id="pokemonImage" class="pokemon-image" src="" alt="Imagen del Pokémon">
-                                </div>
-                                <div class="pokemon-info-container">
-                                    <h2 id="pokemonName">Nombre del Pokémon</h2>
-                                    <p id="pokemonNumber">N° 000</p>
-                                    <div id="pokemonTypes" class="d-flex justify-content-center"></div>
-                                </div>
+                    <!-- Pantalla superior -->
+                    <div class="display-wrap">
+                        <div class="display">
+                            <!-- Imagen de carga por defecto -->
+                            <div id="defaultScreen" class="default-screen">
+                                <img src="https://i.gifer.com/MH5N.gif" alt="Pokédex Loading" class="loading-gif">
                             </div>
-                            <div class="pokemon-description">
-                                <p id="pokemonDesc" class="description-text"></p>
+                            
+                            <div id="pokemonInfo" class="d-none">
+                                <div class="pokemon-header">
+                                    <div class="pokemon-top">
+                                        <div class="pokemon-image-container">
+                                            <img id="pokemonImage" class="pokemon-image" src="" alt="Imagen del Pokémon">
+                                        </div>
+                                        <div class="pokemon-info-container">
+                                            <h2 id="pokemonName">Nombre del Pokémon</h2>
+                                            <p id="pokemonNumber">N° 000</p>
+                                            <div id="pokemonTypes" class="d-flex justify-content-center"></div>
+                                        </div>
+                                    </div>
+                                    <div class="pokemon-description">
+                                        <p id="pokemonDesc" class="description-text"></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Altavoces -->
-            <ul class="speaker-1">
-                <li></li><li></li><li></li>
-                <li></li><li></li><li></li>
-            </ul>
-            <ul class="speaker-2">
-                <li></li><li></li><li></li>
-                <li></li><li></li><li></li>
-            </ul>
-            
-            <!-- Elementos decorativos de esquinas -->
-            <div class="square-1"></div>
-            <div class="square-2"></div>
-            <div class="square-3"></div>
-            <div class="square-4"></div>
-            
-            <!-- Botones laterales L/R -->
-            <span class="pipka-1"></span>
-            <span class="pipka-2"></span>
-            
-            <!-- Elementos laterales -->
-            <div class="left"></div>
-            <div class="right">
-                <ul>
-                    <li class="diod-1"></li>
-                    <li class="diod-2"></li>
-                </ul>
-            </div>
-            
-            <hr class="l-1">
-            <hr class="l-2">
-        </div>
-        
-        <!-- Bisagra central -->
-        <div class="middle">
-            <span class="mic"></span>
-            <span class="mic-2">mic.</span>
-        </div>
-        
-        <hr class="shape-1">
-        
-        <!-- Parte inferior -->
-        <div class="bottom">
-            <!-- Pantalla inferior -->
-            <div class="b-display-wrap">
-                <div class="b-display">
-                    <!-- Pantalla inicial con GIF - visible al cargar -->
-                    <div id="startScreen" class="default-screen bottom-default-screen">
-                        <img src="https://steamuserimages-a.akamaihd.net/ugc/799796254101525495/D0E63B0E19BF31D60C23C8ACC10217FAF74F30AA/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" alt="Press START" class="loading-gif">
+                    
+                    <!-- Altavoces -->
+                    <ul class="speaker-1">
+                        <li></li><li></li><li></li>
+                        <li></li><li></li><li></li>
+                    </ul>
+                    <ul class="speaker-2">
+                        <li></li><li></li><li></li>
+                        <li></li><li></li><li></li>
+                    </ul>
+                    
+                    <!-- Elementos decorativos de esquinas -->
+                    <div class="square-1"></div>
+                    <div class="square-2"></div>
+                    <div class="square-3"></div>
+                    <div class="square-4"></div>
+                    
+                    <!-- Botones laterales L/R -->
+                    <span class="pipka-1"></span>
+                    <span class="pipka-2"></span>
+                    
+                    <!-- Elementos laterales -->
+                    <div class="left"></div>
+                    <div class="right">
+                        <ul>
+                            <li class="diod-1"></li>
+                            <li class="diod-2"></li>
+                        </ul>
                     </div>
                     
-                    <!-- Contenido principal - oculto inicialmente -->
-                    <div id="mainContent" style="display: none;">
-                        <form id="pokemonForm" class="mb-3">
-                            <div class="mb-3">
-                                <label for="pokemonSelect" class="form-label">Selecciona un Pokémon:</label>
-                                <select id="pokemonSelect" name="pokemon" class="form-select">
-                                    <option value="">-- Selecciona uno --</option>
-                                    <!-- Las opciones se cargarán con JavaScript -->
-                                </select>
-                            </div>
-                        </form>
-                        
-                        <div id="pokemonDetails" class="d-none">
-                            <div class="row">
-                                <div class="col-6">Altura: <span id="pokemonHeight">0 m</span></div>
-                                <div class="col-6">Peso: <span id="pokemonWeight">0 kg</span></div>
+                    <hr class="l-1">
+                    <hr class="l-2">
+                </div>
+                
+                <!-- Bisagra central -->
+                <div class="middle">
+                    <span class="mic"></span>
+                    <span class="mic-2">mic.</span>
+                </div>
+                
+                <hr class="shape-1">
+                
+                <!-- Parte inferior -->
+                <div class="bottom">
+                    <!-- Pantalla inferior -->
+                    <div class="b-display-wrap">
+                        <div class="b-display">
+                            <!-- Pantalla inicial con GIF - visible al cargar -->
+                            <div id="startScreen" class="default-screen bottom-default-screen">
+                                <img src="https://steamuserimages-a.akamaihd.net/ugc/799796254101525495/D0E63B0E19BF31D60C23C8ACC10217FAF74F30AA/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" alt="Press START" class="loading-gif">
                             </div>
                             
-                            <h3>Estadísticas</h3>
-                            <div id="pokemonStats"></div>
-                            
-                            <h3>Habilidades</h3>
-                            <ul id="pokemonAbilities" class="list-unstyled"></ul>
+                            <!-- Contenido principal - oculto inicialmente -->
+                            <div id="mainContent" style="display: none;">
+                                <form id="pokemonForm" class="mb-3">
+                                    <div class="mb-3">
+                                        <label for="pokemonSelect" class="form-label">Selecciona un Pokémon:</label>
+                                        <select id="pokemonSelect" name="pokemon" class="form-select">
+                                            <option value="">-- Selecciona uno --</option>
+                                            <!-- Las opciones se cargarán con JavaScript -->
+                                        </select>
+                                    </div>
+                                </form>
+                                
+                                <div id="pokemonDetails" class="d-none">
+                                    <div class="row">
+                                        <div class="col-6">Altura: <span id="pokemonHeight">0 m</span></div>
+                                        <div class="col-6">Peso: <span id="pokemonWeight">0 kg</span></div>
+                                    </div>
+                                    
+                                    <h3>Estadísticas</h3>
+                                    <div id="pokemonStats"></div>
+                                    
+                                    <h3>Habilidades</h3>
+                                    <ul id="pokemonAbilities" class="list-unstyled"></ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    
+                    <!-- Botones A/B/X/Y -->
+                    <ul class="buttons">
+                        <li class="y"><span>y</span></li>
+                        <li class="x"><span>x</span></li>
+                        <li class="b"><span>b</span></li>
+                        <li class="a"><span>a</span></li>
+                    </ul>
+                    
+                    <!-- Botones START/SELECT -->
+                    <ul class="buttons-2">
+                        <li><span class="start">start</span></li>
+                        <li><span class="select">select</span></li>
+                    </ul>
+                    
+                    <!-- D-pad -->
+                    <ul class="buttons-3">
+                        <li class="frwd"><span></span></li>
+                        <li class="right-2"><span></span></li>
+                        <li class="bkwrd"><span></span></li>
+                        <li class="left-2"><span></span></li>
+                        <li class="center"></li>
+                    </ul>
+                </div>
+                
+                <!-- Base de la consola -->
+                <div class="bottom-2">
+                    <div class="vol">
+                        <span>vol.</span>
+                        <div>
+                            <input type="range" id="volumeSlider" min="0" max="100" value="50" class="volume-slider">
+                        </div>
+                    </div>
+                    <span class="container-base"></span>
+                    <div class="headphones"></div>
+                    <div class="headphones-2"></div>
                 </div>
             </div>
-            
-            <!-- Botones A/B/X/Y -->
-            <ul class="buttons">
-                <li class="y"><span>y</span></li>
-                <li class="x"><span>x</span></li>
-                <li class="b"><span>b</span></li>
-                <li class="a"><span>a</span></li>
-            </ul>
-            
-            <!-- Botones START/SELECT -->
-            <ul class="buttons-2">
-                <li><span class="start">start</span></li>
-                <li><span class="select">select</span></li>
-            </ul>
-            
-            <!-- D-pad -->
-            <ul class="buttons-3">
-                <li class="frwd"><span></span></li>
-                <li class="right-2"><span></span></li>
-                <li class="bkwrd"><span></span></li>
-                <li class="left-2"><span></span></li>
-                <li class="center"></li>
-            </ul>
         </div>
         
-        <!-- Base de la consola -->
-        <div class="bottom-2">
-            <div class="vol">
-                <span>vol.</span>
-                <div>
-                    <input type="range" id="volumeSlider" min="0" max="100" value="50" class="volume-slider">
-                </div>
+        <!-- Sección 2: Explicación del proyecto -->
+        <div class="explanation-section">
+            <div class="explanation-content">
+            <h1 class="explanation-title">Projecte PokeAPI</h1>
+            
+            <section class="explanation-block">
+            <h2>Descripció</h2>
+            <p>Aquest projecte consisteix en desenvolupar una aplicació web que simula una Pokédex dins d'una Nintendo DS Lite. L'aplicació permet consultar informació detallada sobre els diferents Pokémon mitjançant l'ús de l'API pública PokeAPI.</p>
+            </section>
+            
+            <section class="explanation-block">
+            <h2>Objectius originals</h2>
+            <ul>
+            <li>Crear una pàgina web que mostri informació d'elements d'una API pública</li>
+            <li>Implementar un selector desplegable amb elements de l'API</li>
+            <li>Mostrar informació detallada de l'element seleccionat</li>
+            <li>Utilitzar HTML, CSS i JavaScript per una presentació clara</li>
+            <li>Implementar peticions amb fetch i axios</li>
+            </ul>
+            </section>
+            
+            <section class="explanation-block">
+            <h2>Objectius dels requisits adaptats</h2>
+            <ul>
+            <li>Obtenir el Pokémon de la Pokédex de Sinnoh (Platinum)</li>
+            <li>Mostrar informació detallada de cada Pokémon (ID, nom, tipus, estadístiques, etc.)</li>
+            <li>Implementar efectes visuals i animacions</li>
+            <li>Afegir so i música de fons</li>
+            </ul>
+            </section>
+            
+            <section class="explanation-block">
+            <h2>Tecnologies utilitzades</h2>
+            <ul>
+            <li><strong>HTML5:</strong> Estructura de la pàgina</li>
+            <li><strong>CSS3:</strong> Estilització i animacions</li>
+            <li><strong>JavaScript:</strong> Interactivitat i comunicació amb l'API</li>
+            <li><strong>Bootstrap:</strong> Components i utilitats CSS</li>
+            </ul>
+            </section>
+            
+            <section class="explanation-block">
+            <h2>Implementació de les funcions principals</h2>
+            
+            <h3>Càrrega de la llista de Pokémon</h3>
+            <div class="code-block">
+            <pre><code>async function cargarListaPokemon() {
+        try {
+        const respuesta = await fetch('https://pokeapi.co/api/v2/pokedex/6/');
+        const datos = await respuesta.json();
+        const pokemonEntries = datos.pokemon_entries;
+        
+        pokemonEntries.sort((a, b) => a.entry_number - b.entry_number);
+        // ... Més codi per processar les dades
+        } catch (error) {
+        console.error('Error carregant la llista de Pokémon:', error);
+        }
+    }</code></pre>
             </div>
-            <span class="container-base"></span>
-            <div class="headphones"></div>
-            <div class="headphones-2"></div>
+            <p>Aquesta funció utilitza la Fetch API per obtenir la llista de Pokémon de la Pokédex de Sinnoh (Platinum). La resposta es processa en format JSON i les entrades de Pokémon es classifiquen per número de Pokédex.</p>
+            <p><strong>Per què utilitzar Fetch API?</strong> La Fetch API és una interfície moderna i senzilla per fer peticions HTTP. És més fàcil d'utilitzar que XMLHttpRequest i suporta promeses, el que permet escriure codi asíncron de manera més clara i concisa.</p>
+            
+            <h3>Càrrega d'informació detallada</h3>
+            <div class="code-block">
+            <pre><code>async function cargarPokemon(pokemonId) {
+        try {
+        const [datosEspecie, datosPokemon] = await Promise.all([
+            fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}/`).then(r => r.json()),
+            fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}/`).then(r => r.json())
+        ]);
+        
+        const nombreEspanol = datosEspecie.names.find(n => n.language.name === "es")?.name;
+        // ... Més codi per mostrar la informació
+        } catch (error) {
+        console.error('Error loading Pokémon:', error);
+        }
+    }</code></pre>
+            </div>
+            <p>Aquesta funció utilitza la Fetch API amb <code>Promise.all</code> per obtenir simultàniament les dades de l'espècie i del Pokémon. Això permet mostrar informació detallada com el nom en espanyol, tipus, estadístiques, etc.</p>
+            <p><strong>Per què utilitzar async/await?</strong> L'ús de <code>async/await</code> fa que el codi asíncron sigui més llegible i fàcil de mantenir. Permet escriure codi que sembla síncron, però que en realitat és asíncron, el que facilita la gestió de les promeses.</p>
+            
+            <h3>Reproducció de so</h3>
+            <div class="code-block">
+            <pre><code>function reproducirSonidoPokemon(pokemonId, pokemonName) {
+        const audioElement = new Audio();
+        let audioUrl = `https://play.pokemonshowdown.com/audio/cries/${pokemonName.toLowerCase()}.ogg`;
+        const fallbackUrl = `https://play.pokemonshowdown.com/audio/cries/${pokemonId}.ogg`;
+        
+        audioElement.src = audioUrl;
+        audioElement.onerror = function() {
+        audioElement.src = fallbackUrl;
+        audioElement.play().catch(e => console.log('Error:', e));
+        };
+        audioElement.play().catch(e => console.log('Error:', e));
+    }</code></pre>
+            </div>
+            <p>Aquesta funció reprodueix el crit característic de cada Pokémon. Si la URL principal falla, es fa servir una URL alternativa. Això assegura que sempre es reprodueixi un so per al Pokémon seleccionat.</p>
+            <p><strong>Per què utilitzar l'objecte Audio?</strong> L'objecte <code>Audio</code> proporciona una manera senzilla de reproduir sons en una pàgina web. És compatible amb la majoria dels navegadors moderns i permet gestionar errors de càrrega de manera eficient.</p>
+            
+            <h3>Utilització d'axios</h3>
+            <div class="code-block">
+            <pre><code>async function cargarPokemon(pokemonId) {
+        try {
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}/`);
+        const datosPokemon = response.data;
+        
+        // Processar les dades del Pokémon
+        // ...
+        } catch (error) {
+        console.error('Error carregant el Pokémon:', error);
+        }
+    }</code></pre>
+            </div>
+            <p>Aquesta funció utilitza la llibreria <code>axios</code> per fer una petició GET a l'API de Pokémon. Axios simplifica les peticions HTTP i gestiona automàticament la conversió de la resposta a JSON.</p>
+            <p><strong>Per què utilitzar axios?</strong> <code>Axios</code> és una llibreria popular per fer peticions HTTP que ofereix una API més senzilla i funcionalitats addicionals com la gestió automàtica de JSON, interceptors de peticions/respostes i suport per a peticions cancel·lables.</p>
+            
+            <h3>Utilització de XMLHttpRequest</h3>
+            <div class="code-block">
+            <pre><code>function cargarPokemonConXHR(pokemonId) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', `https://pokeapi.co/api/v2/pokemon/${pokemonId}/`);
+        xhr.onload = function() {
+        if (xhr.status === 200) {
+            const datosPokemon = JSON.parse(xhr.responseText);
+            
+            // Processar les dades del Pokémon
+            // ...
+        } else {
+            console.error('Error carregant el Pokémon:', xhr.status);
+        }
+        };
+        xhr.send();
+    }</code></pre>
+            </div>
+            <p>Aquesta funció utilitza <code>XMLHttpRequest</code> per fer una petició GET a l'API de Pokémon. Tot i que és una tècnica més antiga, és útil per comprendre com funcionen les peticions HTTP a baix nivell.</p>
+            <p><strong>Per què utilitzar XMLHttpRequest?</strong> <code>XMLHttpRequest</code> és una API més antiga però encara funcional per fer peticions HTTP. És útil per comprendre els fonaments de les peticions HTTP i per compatibilitat amb navegadors més antics.</p>
+            </section>
+            </div>
+                <div class="credits-container">
+                <h2>Agraïments</h2>
+                <p>El disseny de la Nintendo DS en aquest projecte està inspirat i adaptat del treball de 
+                   <a href="https://codepen.io/AntonEssenetial/pen/nXEjNy" target="_blank">Anton Essential</a> 
+                   a CodePen, disponible sota llicència MIT.</p>
+                <p>Gràcies a la seva contribució, he pogut crear aquesta experiència interactiva de Pokédex.</p>
+                </div>
+            
         </div>
-    </div>
-    <!-- Script JS al final del DOM (aunque nos aseguraremos de que cargue todo antes) -->
+        <!-- Secció d'agraïments -->
+
+    <!-- Script JS -->
     <script src="scripts.js"></script>
+    <script>
+        // Script para mostrar/ocultar la sección de explicaciones
+        document.getElementById('toggleExplanation').addEventListener('click', function() {
+            document.querySelector('.project-container').classList.toggle('explanation-hidden');
+        });
+    </script>
 </body>
 </html>

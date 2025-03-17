@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 /* Estil base pel cos del document */
 body {
     background: rgb(32, 32, 32);
@@ -775,18 +780,6 @@ body {
 .vol.playing .volume-slider::-moz-range-thumb {
     background: linear-gradient(to bottom, #9cff9c 0%, #44c767 100%);
 }
-
-/* Indicador de reproducció de so */
-.vol.playing::after {
-    content: "♫";
-    position: absolute;
-    top: -15px;
-    right: -5px;
-    font-size: 14px;
-    color: #44c767;
-    animation: float 2s infinite ease-in-out;
-}
-
 /* Contingut de l'extrem dret */
 .right ul {
     list-style-type: none;
@@ -956,7 +949,7 @@ body {
     font-family: 'arial';
 }
 
-/* Mejorar el aspecto del botón START para indicar que es interactivo */
+/* Aspecte del botó START per indicar que és interactiu */
 .buttons-2 li span.start {
     cursor: pointer;
     position: relative;
@@ -1146,7 +1139,6 @@ body {
     height: 7px;
 }
 
-/* Añadir estos estilos al final del archivo CSS */
 .volume-slider {
     -webkit-appearance: none;
     appearance: none;
@@ -1207,7 +1199,7 @@ body {
 
 
 
-/* Contenido Pokedex */
+/* Contingut de la  Pokedex */
 h1 {
     font-size: 16px !important;
     margin-bottom: 10px !important;
@@ -1274,7 +1266,7 @@ h2, h3 {
     text-align: center;
 }
 
-/* Colores por tipo de Pokémon */
+/* Colors per tipus de Pokémon */
 .type-normal { background-color: #A8A77A; }
 .type-fire { background-color: #EE8130; }
 .type-water { background-color: #6390F0; }
@@ -1294,7 +1286,7 @@ h2, h3 {
 .type-steel { background-color: #B7B7CE; }
 .type-fairy { background-color: #D685AD; }
 
-/* Estadísticas del Pokémon */
+/* Estadístiques del Pokémon */
 .stats-container {
     font-size: 10px;
     margin-top: 8px;
@@ -1332,7 +1324,7 @@ h2, h3 {
     border-radius: 3px;
 }
 
-/* Navegación entre Pokémon */
+/* Navegació entre Pokémon */
 .nav-buttons {
     display: flex;
     justify-content: space-between;
@@ -1366,7 +1358,7 @@ h2, h3 {
     margin-left: 3px;
 }
 
-/* Movimientos del Pokémon */
+/* Movimients del Pokémon */
 .moves-container {
     margin-top: 10px;
     font-size: 9px;
@@ -1394,7 +1386,7 @@ h2, h3 {
     text-transform: uppercase;
 }
 
-/* Información adicional */
+/* Informació adicional */
 .pokemon-info-row {
     display: flex;
     justify-content: space-between;
@@ -1433,16 +1425,58 @@ h2, h3 {
     50% { opacity: 1; }
 }
 
-/* Responsive per visualització en dispositius mòbils */
-@media (max-width: 768px) {
+
+
+@media (max-width: 665px) {
+    .project-container {
+        display: flex;
+        justify-content: center;
+        background-color: rgb(32, 32, 32) !important;      
+    }  
     .ds-lite {
-        transform: translateX(-50%) scale(0.95); /* Ajustat per a que sigui més gran en mòbils */
+        transform: translateX(-50%) scale(0.45); /* Més reduït per dispositius mòbils */
+        background-color: rgb(32, 32, 32) !important;
+    }
+    .ds-section {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(32, 32, 32) !important;
+    }
+    .explanation-section {    
+
+        transition: transform 0.5s;
+        width: 100% !important;
+        height: 100% !important;       
     }
 }
 
-@media (max-width: 500px) {
+/* Millores per a tauletes */
+@media (min-width: 481px) and (max-width: 1024px) {
     .ds-lite {
-        transform: translateX(-50%) scale(0.75); /* Ajustat per a que sigui més gran en mòbils petits */
+        transform: translateX(-50%) scale(0.50); /* Escala adequada per a tauletes */
+        margin-top: -120px;
+    }
+    
+    .explanation-section {
+        width: 45%;
+    }
+    
+    .ds-section {
+        width: 55%;
+    }
+}
+
+
+/* Millores per a mòbils petits */
+@media (max-width: 380px) {
+    .ds-lite {
+        transform: translateX(-50%) scale(0.35); /* Encara més petit per a mòbils molt petits */
+    }
+    
+    .explanation-section {
+        padding: 15px;
     }
 }
 
@@ -1612,7 +1646,7 @@ h2, h3 {
     font-style: italic;
 }
 
-/* Nou disseny de la informació del Pokémon a la pantalla superior */
+/* Disseny de la informació del Pokémon a la pantalla superior */
 .pokemon-top {
     display: flex;
     margin-bottom: 10px;
@@ -1787,7 +1821,7 @@ h2, h3 {
     width: 100%;
     height: 100%;
     object-fit: fill; 
-    object-position: center; /* Centrar la imagen */
+    object-position: center; 
 }
 
 /* Estil per al select deshabilitat */
@@ -1814,7 +1848,7 @@ h2, h3 {
     overflow: hidden;
     border-radius: 3px;
     position: relative;
-    padding: 0; /* Eliminar qualsevol padding */
+    padding: 0; 
 }
 
 /* Assegurar que el contenidor del GIF ocupi tot l'espai */
@@ -1841,9 +1875,6 @@ h2, h3 {
     position: relative;
     box-sizing: border-box;
     color: #333;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 5px center;
     background-size: 16px;
 }
 
@@ -1855,4 +1886,158 @@ h2, h3 {
 /* Assegurar que les opcions del dropdown siguin visibles per sobre de la resta */
 .custom-select-dropdown {
     z-index: 20;
+}
+
+/* Estils per el dropdown personalitzat */
+.project-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Sección de la Nintendo DS */
+.ds-section {
+    width: 60%;
+    background-color: #111;
+    min-height: 100vh;
+    position: relative;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Sección de explicación */
+.explanation-section {
+    width: 40%;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-left: 1px solid #ddd;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Botón para mostrar/ocultar explicación */
+.toggle-explanation {
+    position: absolute;
+    margin: 20px;
+    z-index: 1001;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+
+
+.toggle-explanation:hover {
+    background: #444;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+.toggle-explanation.active:hover {
+    background: #555;
+}
+
+/* Estado oculto con animaciones mejoradas */
+.explanation-hidden .explanation-section {
+    transform: translateX(100%);
+}
+
+.explanation-hidden .toggle-explanation {
+    right: 20px;
+}
+
+.explanation-hidden .ds-section {
+    width: 100%;
+}
+
+/* Estils per els blocs de codi */
+.code-block {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 0;
+    margin: 15px 0;
+    overflow-x: auto;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.code-block::before {
+    content: "JavaScript";
+    display: block;
+    padding: 5px 10px;
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+    font-size: 12px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    border-bottom: 1px solid #444;
+    text-align: right;
+}
+
+.code-block pre {
+    margin: 0;
+    padding: 15px;
+    background-color: transparent;
+}
+
+.code-block code {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 13px;
+    color: #d4d4d4;
+    line-height: 1.5;
+    tab-size: 4;
+    display: block;
+}
+
+
+.code-block::-webkit-scrollbar {
+    height: 8px;
+}
+
+.code-block::-webkit-scrollbar-track {
+    background: #2d2d2d;
+}
+
+.code-block::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+}
+
+.code-block::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+h3{
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'arial';
+    color: #333;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.credits-container{
+ background-color: #3b3b3b;
+ color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+
 }
