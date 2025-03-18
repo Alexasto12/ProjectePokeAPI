@@ -1,24 +1,37 @@
 document.addEventListener('DOMContentLoaded', function() {
     const pokemonSelect = document.getElementById('pokemonSelect');
-
     const pokemonInfo = document.getElementById('pokemonInfo');
     const pokemonDetails = document.getElementById('pokemonDetails');
     const startButton = document.querySelector('.start').parentElement;
     
-    // Deshabilitar el select inicialment (això está deprected pero haig de mantindre la funcionalitat)
-    pokemonSelect.disabled = true;
+    // Variable per controlar si el dispositiu està encès
+    let dsEncendida = false;
     
-    // Afegir la classe visual de deshabilitat al select
+    // Deshabilitar el select inicialment
+    pokemonSelect.disabled = true;
     pokemonSelect.classList.add('disabled-select');
     
-    // Efecto visual al botón START para indicar que es clickable
+    // Efecte visual al botó START per indicar que és clicable
     startButton.style.cursor = 'pointer';
     
-    // Listener per el botó START
+    const btnUp = document.querySelector('.frwd');
+    const btnDown = document.querySelector('.bkwrd');
+    const btnLeft = document.querySelector('.left-2');
+    const btnRight = document.querySelector('.right-2');
+    
+    // Afegir classe visual per als botons deshabilitars
+    [btnUp, btnDown, btnLeft, btnRight].forEach(btn => {
+        btn.classList.add('disabled-button');
+    });
+    
+    // Listener per al botó START
     startButton.addEventListener('click', function() {
-        // Animación visual del botó (deprecated)
+        // Animació visual del botó
         this.classList.add('active-button');
         setTimeout(() => this.classList.remove('active-button'), 300);
+        
+        // Marcar el dispositiu com encès
+        dsEncendida = true;
         
         // Ocultar pantalla inicial i mostrar contingut principal
         document.getElementById('startScreen').style.display = 'none';
@@ -28,10 +41,42 @@ document.addEventListener('DOMContentLoaded', function() {
         pokemonSelect.disabled = false;
         pokemonSelect.classList.remove('disabled-select');
         
+        // També actualitzar el botó personalitzat
+        const customSelectButton = document.querySelector('.custom-select-button');
+        if (customSelectButton) {
+            customSelectButton.classList.remove('disabled-select');
+            customSelectButton.setAttribute('tabindex', '0'); // Ara pot rebre focus
+        }
+        
+        // Habilitar botons de direcció (treure classe visual de deshabilitat)
+        [btnUp, btnDown, btnLeft, btnRight].forEach(btn => {
+            btn.classList.remove('disabled-button');
+        });
+        
         // Carregar la llista de Pokémon
         if (pokemonSelect.options.length > 1) {
             // Si ja tenim opcions, seleccionar la primera
-            pokemonSelect.selectedIndex = 1; // L'index 0 és l'opció per defecte
+            pokemonSelect.selectedIndex = 1; // L'índex 0 és l'opció per defecte
+            
+            // Actualitzar el text del botó personalitzat
+            const customSelectButton = document.querySelector('.custom-select-button');
+            if (customSelectButton && pokemonSelect.options[1]) {
+                customSelectButton.textContent = pokemonSelect.options[1].textContent;
+            }
+            
+            // Actualitzar l'opció seleccionada al dropdown personalitzat
+            const customDropdown = document.querySelector('.custom-select-dropdown');
+            if (customDropdown) {
+                const selectedValue = pokemonSelect.value;
+                const selectedOption = customDropdown.querySelector(`.select-option[data-value="${selectedValue}"]`);
+                if (selectedOption) {
+                    document.querySelectorAll('.select-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    selectedOption.classList.add('selected');
+                }
+            }
+            
             pokemonSelect.dispatchEvent(new Event('change'));
         } else {
             // Si encara no hi ha opcions, esperar fins que estiguin carregades
@@ -45,11 +90,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    const btnUp = document.querySelector('.frwd');
-    const btnDown = document.querySelector('.bkwrd');
-    const btnLeft = document.querySelector('.left-2');
-    const btnRight = document.querySelector('.right-2');
-    
     let currentPokemonIndex = -1;
     let pokemonList = [];
     
@@ -60,29 +100,70 @@ document.addEventListener('DOMContentLoaded', function() {
         if (pokemonId) {
             cargarPokemon(pokemonId);
             currentPokemonIndex = pokemonSelect.selectedIndex;
-
             pokemonSelect.blur();
         }
     });
     
-    btnUp.addEventListener('click', scrollArriba);
-    btnDown.addEventListener('click', scrollAbajo);
-    btnLeft.addEventListener('click', navegarSiguiente); 
-    btnRight.addEventListener('click', navegarAnterior); 
+    // Modificar els event listeners per a verificar si la DS està encesa
+    btnUp.addEventListener('click', function() {
+        if (dsEncendida) scrollArriba();
+    });
     
+    btnDown.addEventListener('click', function() {
+        if (dsEncendida) scrollAbajo();
+    });
+    
+    btnLeft.addEventListener('click', function() {
+        if (dsEncendida) navegarSiguiente();
+    });
+    
+    btnRight.addEventListener('click', function() {
+        if (dsEncendida) navegarAnterior();
+    });
+    
+    // Actualitzar esdeveniments de mousedown/mouseup/mouseleave
     [btnUp, btnDown, btnLeft, btnRight].forEach(btn => {
         btn.addEventListener('mousedown', function() {
-            this.classList.add('active');
+            if (dsEncendida) this.classList.add('active');
         });
         
         btn.addEventListener('mouseup', function() {
-            this.classList.remove('active');
+            if (dsEncendida) this.classList.remove('active');
         });
         
         btn.addEventListener('mouseleave', function() {
-            this.classList.remove('active');
+            if (dsEncendida) this.classList.remove('active');
         });
     });
+    // Afegir estils per als botons deshabilitars
+    const styleButtons = document.createElement('style');
+    styleButtons.textContent = `
+        .buttons-3 li.disabled-button {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        
+        .buttons-3 li.active {
+            transform: scale(0.95) !important;
+            filter: brightness(0.9) !important;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.5) !important;
+            transition: all 0.05s ease !important;
+        }
+    `;
+    document.head.appendChild(styleButtons);
+    
+    // Afegir estils per als elements deshabilitars
+    const styleDisabled = document.createElement('style');
+    styleDisabled.textContent = `
+        .custom-select-button.disabled-select {
+            opacity: 0.7;
+            cursor: not-allowed;
+            background-color: #e9e9e9;
+            color: #888;
+        }
+    `;
+    document.head.appendChild(styleDisabled);
     
     // Variable per controlar el volum i estat de la musica
     let musicaReproduciendo = false;
@@ -253,20 +334,19 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     function navegarAnterior() {
         if (currentPokemonIndex > 1) {
-            // Actualizar el índice y el select nativo
+       
             pokemonSelect.selectedIndex = currentPokemonIndex - 1;
             currentPokemonIndex = pokemonSelect.selectedIndex;
             
-            // Obtener el texto de la opción seleccionada
+      
             const selectedText = pokemonSelect.options[currentPokemonIndex].text;
             
-            // Actualizar el texto del botón de select personalizado
+         
             const customSelectButton = document.querySelector('.custom-select-button');
             if (customSelectButton) {
                 customSelectButton.textContent = selectedText;
             }
-            
-            // Actualizar la clase selected en las opciones del dropdown personalizado
+   
             const customDropdown = document.querySelector('.custom-select-dropdown');
             if (customDropdown) {
                 const options = customDropdown.querySelectorAll('.select-option');
@@ -278,8 +358,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     selectedOption.classList.add('selected');
                 }
             }
-            
-            // Disparar el evento change en el select nativo
+
             pokemonSelect.dispatchEvent(new Event('change'));
         }
         
@@ -293,20 +372,18 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     function navegarSiguiente() {
         if (currentPokemonIndex < pokemonSelect.options.length - 1) {
-            // Actualizar el índice y el select nativo
+        
             pokemonSelect.selectedIndex = currentPokemonIndex + 1;
             currentPokemonIndex = pokemonSelect.selectedIndex;
             
-            // Obtener el texto de la opción seleccionada
+           
             const selectedText = pokemonSelect.options[currentPokemonIndex].text;
             
-            // Actualizar el texto del botón de select personalizado
             const customSelectButton = document.querySelector('.custom-select-button');
             if (customSelectButton) {
                 customSelectButton.textContent = selectedText;
             }
-            
-            // Actualizar la clase selected en las opciones del dropdown personalizado
+           
             const customDropdown = document.querySelector('.custom-select-dropdown');
             if (customDropdown) {
                 const options = customDropdown.querySelectorAll('.select-option');
@@ -318,8 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     selectedOption.classList.add('selected');
                 }
             }
-            
-            // Disparar el evento change en el select nativo
+        
             pokemonSelect.dispatchEvent(new Event('change'));
         }
         
@@ -352,18 +428,21 @@ document.addEventListener('DOMContentLoaded', function() {
             selectContainer.className = 'select-container';
             pokemonSelect.parentNode.insertBefore(selectContainer, pokemonSelect);
             
-            // Movem el select original al contenidor i l'ocultem visualment
+            // Movem el select original al contenidor i l'ocultem completament
             selectContainer.appendChild(pokemonSelect);
             pokemonSelect.style.opacity = '0';
             pokemonSelect.style.position = 'absolute';
             pokemonSelect.style.pointerEvents = 'none';
             pokemonSelect.style.height = '0';
+            pokemonSelect.style.width = '0'; // Afegim amplada 0
+            pokemonSelect.tabIndex = -1; // Evitar que rebi el focus
+            pokemonSelect.disabled = true; // Deshabilita el select fins que es premi START
             
             // Creem el botó personalitzat que es mostrarà en lloc del select
             const customSelectButton = document.createElement('div');
-            customSelectButton.className = 'custom-select-button';
+            customSelectButton.className = 'custom-select-button disabled-select'; // Afegim classe disabled-select
             customSelectButton.textContent = '-- Select a Pokémon --';
-            customSelectButton.setAttribute('tabindex', '0');
+            customSelectButton.setAttribute('tabindex', '-1'); // Deshabilitem també el focus al custom select
             selectContainer.appendChild(customSelectButton);
             
             // Creem el dropdown personalitzat que contindrà les opcions
@@ -431,11 +510,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 customDropdown.appendChild(dropdownOption);
             });
             
-            // Gestió de la visualització del dropdown
+            // Gestió de la visualització del dropdown - bloqueja fins que la DS estigui encesa
             customSelectButton.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                customDropdown.classList.toggle('show');
+                // Només mostrar el dropdown si la DS està encesa
+                if (dsEncendida) {
+                    customDropdown.classList.toggle('show');
+                }
             });
             
             // Tanquem el dropdown quan es fa clic fora
@@ -447,17 +529,24 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Configurem els controls de teclat per navegar
             document.addEventListener('keydown', function(event) {
+                // Si la DS no està encesa, sortim
+                if (!dsEncendida) return;
+                
                 switch(event.key) {
                     case 'ArrowUp':
+                        event.preventDefault();
                         scrollArriba();
                         break;
                     case 'ArrowDown':
+                        event.preventDefault();
                         scrollAbajo();
                         break;
                     case 'ArrowLeft':
+                        event.preventDefault();
                         navegarAnterior();
                         break;
                     case 'ArrowRight':
+                        event.preventDefault();
                         navegarSiguiente();
                         break;
                 }
@@ -544,6 +633,10 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('pokemonName').textContent = nombreEspanol;
             document.getElementById('pokemonNumber').textContent = `N° ${datosPokemon.id.toString().padStart(3, '0')}`;
             
+            // AFEGIR AQUESTA LÍNIA PER REPRODUIR EL SO AUTOMÀTICAMENT
+            // Reproduir el so del Pokémon automàticament quan canvia
+            reproducirSonidoPokemon(datosPokemon.id, datosPokemon.name);
+            
             // Creem el botó de so
             const soundButton = document.createElement('button');
             soundButton.className = 'sound-button';
@@ -552,10 +645,15 @@ document.addEventListener('DOMContentLoaded', function() {
             // Afegim el botó al contenidor de la imatge
             const imageContainer = document.querySelector('.pokemon-image-container');
             if (imageContainer) {
+                // Eliminem el botó anterior si existeix per evitar duplicats
+                const oldButton = imageContainer.querySelector('.sound-button');
+                if (oldButton) {
+                    oldButton.remove();
+                }
                 imageContainer.appendChild(soundButton);
             }
 
-            // Afegim l'esdeveniment per reproduir el so
+            // Afegim l'esdeveniment per reproduir el so novament si es fa clic
             soundButton.addEventListener('click', function(e) {
                 e.preventDefault();
                 reproducirSonidoPokemon(datosPokemon.id, datosPokemon.name);
@@ -623,20 +721,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 abilitiesContainer.appendChild(abilityItem);
             }
             
-            // Obtener el tipo principal (primer tipo) para el fondo
+            // Obtenir el tipus principal (primer tipus) per el fons
             if (datosPokemon.types && datosPokemon.types.length > 0) {
                 const primaryType = datosPokemon.types[0].type.name;
                 const background = getTypeBackground(primaryType);
                 
-                // Aplicar el fondo a la pantalla superior
+                // Aplicar el fons a la pantalla superior
                 const display = document.querySelector('.display');
                 display.style.background = `linear-gradient(90deg, ${background.primary} 33.34%, ${background.secondary} 66.66%)`;
                 
-                // Añadir una sutil animación al fondo
+                // Afegir una animació de fons per al tipus principal
                 display.style.backgroundSize = '300% 300%';
                 display.style.animation = 'type-bg-animation 8s ease infinite';
                 
-                // Eliminar partículas anteriores si existen
+                // Eliminar partícules anteriors i afegir-ne de noves
                 const previousParticles = display.querySelector('.type-particles');
                 if (previousParticles) {
                     previousParticles.remove();

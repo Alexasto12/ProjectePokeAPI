@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
+    <link rel="icon" href="https://cdn2.steamgriddb.com/icon_thumb/691f73fdf1c5edeb3f600c515715a358.png" type="image/png">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -13,7 +14,7 @@
     <!-- Botón para alternar la sección de explicación -->
     <button id="toggleExplanation" class="toggle-explanation">☰</button>
     
-    <div class="project-container">
+    <div class="project-container explanation-hidden">
         <!-- Sección 1: Nintendo DS con la aplicación Pokédex -->
         <div class="ds-section">
             <div class="wrapper">
@@ -109,7 +110,7 @@
                                     <div class="mb-3">
                                         <label for="pokemonSelect" class="form-label">Selecciona un Pokémon:</label>
                                         <select id="pokemonSelect" name="pokemon" class="form-select">
-                                            <option value="">-- Selecciona uno --</option>
+                                            <option value=""></option>
                                             <!-- Las opciones se cargarán con JavaScript -->
                                         </select>
                                     </div>
